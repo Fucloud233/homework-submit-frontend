@@ -73,6 +73,7 @@ export default {
     /* padding: 15px; */
 
     background-color: white;
+    box-shadow: 2px 5px 5px gray;
 
     display: flex;
     flex-direction: row;
