@@ -1,10 +1,5 @@
-<script setup lang="ts">
-// import HelloWorld from "./components/HelloWorld.vue";
-import AdminLogin from "./views/login/Admin.vue";
-</script>
-
 <template>
-    <AdminLogin />
+    <router-view></router-view>
 </template>
 
 <style scoped>
