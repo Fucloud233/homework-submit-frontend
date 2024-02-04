@@ -12,17 +12,17 @@
             </div>
         </template>
         <template #aside>
-            <el-menu default-active="1" style="height: 100%">
-                <el-menu-item index="1">
+            <el-menu default-active="/dashboard" style="height: 100%" router>
+                <el-menu-item index="/dashboard">
                     <el-icon><Odometer /></el-icon>Dashboard
                 </el-menu-item>
                 <el-sub-menu index="2">
                     <template #title>
                         <el-icon><User /></el-icon>人事管理
                     </template>
-                    <el-menu-item index="2-1">学生管理</el-menu-item>
-                    <el-menu-item index="2-2">课程管理</el-menu-item>
-                    <el-menu-item index="2-3">管理员管理</el-menu-item>
+                    <el-menu-item index="/student">学生管理</el-menu-item>
+                    <el-menu-item index="/teacher">教师管理</el-menu-item>
+                    <el-menu-item index="/admin">管理员管理</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="3">
                     <template #title>
@@ -33,7 +33,7 @@
                 </el-sub-menu>
             </el-menu>
         </template>
-        <template>
+        <template #main>
             <router-view></router-view>
         </template>
     </MainLayout>
