@@ -7,7 +7,11 @@
             <el-aside width="300px">
                 <slot name="aside"></slot>
             </el-aside>
-            <el-main> <slot name="main"></slot> </el-main>
+            <el-main>
+                <div id="content-container">
+                    <slot name="main"></slot>
+                </div>
+            </el-main>
         </div>
     </el-container>
 </template>
@@ -19,6 +23,7 @@ export default {};
 <style scoped>
 .el-container {
     height: 100%;
+    padding: 0;
 }
 .el-header {
     background-color: #409eff;
@@ -29,6 +34,18 @@ export default {};
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+.el-main {
+    background-color: #e9e9eb;
+}
+#content-container {
+    background-color: white;
+    border-radius: 15px;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 20px 30px;
+
+    box-shadow: 3px 3px 5px rgb(150, 150, 150);
 }
 #avatar {
     border-radius: 50%;
