@@ -1,4 +1,3 @@
-import _CollapseTransition from "element-plus/es/components/collapse-transition/index.mjs";
 import { createRouter, createWebHashHistory } from "vue-router";
 
 var routes = [
@@ -15,22 +14,32 @@ var routes = [
             {
                 path: "/dashboard",
                 name: "dashboard",
-                component: () => import("../views/sub/personnel/Student.vue"),
+                component: () =>
+                    import("../views/sub/personnel/student/Add.vue"),
             },
             {
                 path: "/student",
                 name: "student",
-                component: () => import("../views/sub/personnel/Student.vue"),
+                component: () =>
+                    import("../views/sub/personnel/student/Query.vue"),
+            },
+            {
+                path: "/student/add",
+                name: "studentAdd",
+                component: () =>
+                    import("../views/sub/personnel/student/Add.vue"),
             },
             {
                 path: "/teacher",
                 name: "teacher",
-                component: () => import("../views/sub/personnel/Student.vue"),
+                component: () =>
+                    import("../views/sub/personnel/student/Add.vue"),
             },
             {
                 path: "/admin",
                 name: "admin",
-                component: () => import("../views/sub/personnel/Student.vue"),
+                component: () =>
+                    import("../views/sub/personnel/student/Add.vue"),
             },
         ],
     },

@@ -7,36 +7,14 @@
     >
         <!-- 操作按钮 -->
         <el-form-item label="操作">
-            <el-button type="success">添加</el-button>
+            <el-button
+                @click="$router.push({ name: 'studentAdd' })"
+                type="success"
+                >添加</el-button
+            >
             <el-button type="success">批量添加</el-button>
         </el-form-item>
         <br />
-
-        <!-- 查询字段 -->
-        <el-form-item label="查询类型">
-            <el-select
-                v-model="queryInfo.kind"
-                style="width: 100px"
-                :default-first-option="true"
-                @change="queryInfo.clearContent()"
-            >
-                <el-option
-                    v-for="kind in queryKinds"
-                    :key="kind.value"
-                    :label="kind.label"
-                    :value="kind.value"
-                ></el-option>
-            </el-select>
-        </el-form-item>
-
-        <el-form-item>
-            <el-input
-                style="width: 200px"
-                v-model="queryInfo.content"
-                placeholder="请输入"
-                clearable
-            ></el-input>
-        </el-form-item>
 
         <!-- 根据年级筛选 -->
         <el-form-item label="年级">
@@ -72,10 +50,37 @@
             </el-select>
         </el-form-item>
 
-        <el-form-item>
-            <el-button @click="update()" type="primary">查询</el-button>
-            <el-button @click="clear()">清除</el-button>
+        <!-- 查询字段 -->
+        <el-form-item label="查询类型">
+            <el-space>
+                <!-- TODO: 添加数字验证 -->
+                <el-select
+                    v-model="queryInfo.kind"
+                    style="width: 100px"
+                    :default-first-option="true"
+                    @change="queryInfo.clearContent()"
+                >
+                    <el-option
+                        v-for="kind in queryKinds"
+                        :key="kind.value"
+                        :label="kind.label"
+                        :value="kind.value"
+                    ></el-option>
+                </el-select>
+
+                <el-input
+                    style="width: 200px"
+                    v-model="queryInfo.content"
+                    placeholder="请输入"
+                    clearable
+                ></el-input>
+
+                <el-button @click="update()" type="primary">查询</el-button>
+                <el-button @click="clear()">清除</el-button>
+            </el-space>
         </el-form-item>
+
+        <el-form-item> </el-form-item>
         <br />
     </el-form>
     <el-divider />
@@ -113,7 +118,7 @@
 </template>
 
 <script lang="ts">
-import { Student, query } from "../../../api/student";
+import { Student, query } from "../../../../api/student";
 
 class QueryInfo {
     kind: number;
@@ -133,7 +138,8 @@ class QueryInfo {
     }
 
     clear() {
-        this.kind = this.grade = this.gender = 0;
+        this.kind = 1;
+        this.grade = this.gender = 0;
         this.content = undefined;
         this.pageNum = 0;
         this.pageSize = 5;
@@ -170,12 +176,8 @@ class QueryInfo {
 export default {
     data() {
         return {
-            queryInfo: new QueryInfo(0, "", 0, 0),
+            queryInfo: new QueryInfo(1, "", 0, 0),
             queryKinds: [
-                {
-                    value: 0,
-                    label: "无",
-                },
                 {
                     value: 1,
                     label: "学号",
