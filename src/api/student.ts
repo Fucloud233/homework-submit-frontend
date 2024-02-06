@@ -3,12 +3,20 @@ import * as utils from "./utils";
 import { plainToClass } from "class-transformer";
 
 export class Student {
-    id: number = 0;
-    name: string = "";
-    gender: number = 0;
-    grade: number = 0;
-    password: string = "";
+    id: number | undefined;
+    name: string | undefined;
+    gender: number | undefined;
+    grade: number | undefined;
+    password: string | undefined;
 }
+
+export const add = async (info: Student, randomPassword: boolean) => {
+    if (randomPassword) {
+        info.password = undefined;
+    }
+
+    return await utils.postRequest("/student", info);
+};
 
 export const query = async (
     info: Student,
@@ -23,26 +31,15 @@ export const query = async (
 
     Object.assign(param, info);
 
-    return await utils
-        .getRequest(utils.getApiUrl("/student"), param)
-        .then((resp) => {
-            if (resp.status != 200) {
-                console.error("query student error");
-                return {
-                    info: [] as Student[],
-                    length: 0,
-                };
-            }
+    return await utils.getRequest("/student", param).then((result) => {
+        const data = result.data;
 
-            const data = resp.data.data;
-            const result = {
-                length: data.length,
-                // 循环解析数据
-                info: data.info.map((element: any) => {
-                    return plainToClass(Student, element);
-                }),
-            };
-
-            return result;
-        });
+        return {
+            length: data.length,
+            // 循环解析数据
+            info: data.info.map((element: any) => {
+                return plainToClass(Student, element);
+            }),
+        };
+    });
 };
