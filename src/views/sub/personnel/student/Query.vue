@@ -12,7 +12,11 @@
                 type="success"
                 >添加</el-button
             >
-            <el-button type="success">批量添加</el-button>
+            <el-button
+                @click="$router.push({ name: 'studentAddInBatch' })"
+                type="success"
+                >批量添加</el-button
+            >
         </el-form-item>
         <br />
 

@@ -30,6 +30,12 @@ var routes = [
                     import("../views/sub/personnel/student/Add.vue"),
             },
             {
+                path: "/student/add/batch",
+                name: "studentAddInBatch",
+                component: () =>
+                    import("@/views/sub/personnel/student/AddInBatch.vue"),
+            },
+            {
                 path: "/teacher",
                 name: "teacher",
                 component: () =>
