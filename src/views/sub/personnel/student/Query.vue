@@ -88,26 +88,19 @@
         <br />
     </el-form>
     <el-divider />
-    <el-table :data="list" :border="true" :stripe="true">
-        <el-table-column prop="id" label="编号" />
-        <el-table-column prop="name" label="姓名" />
-        <el-table-column prop="grade" label="年级" />
-        <el-table-column prop="gender" label="性别">
-            <template #default="scope">
-                {{ getGenderLabel(scope.row.gender) }}
-            </template>
-        </el-table-column>
-        <el-table-column label="操作">
-            <template #default>
+
+    <student-table :data="list">
+        <template #function>
+            <el-table-column label="操作">
                 <div style="display: inline">
                     <el-button type="info" size="small" text>
                         修改密码
                     </el-button>
                     <el-button type="danger" size="small" text>删除</el-button>
                 </div>
-            </template>
-        </el-table-column>
-    </el-table>
+            </el-table-column>
+        </template>
+    </student-table>
 
     <!-- 表格分页 -->
     <div style="padding-top: 15px">
@@ -123,6 +116,8 @@
 
 <script lang="ts">
 import { Student, query } from "../../../../api/student";
+
+import StudentTable from "@/components/table/Student.vue";
 
 class QueryInfo {
     kind: number;
@@ -178,6 +173,9 @@ class QueryInfo {
 }
 
 export default {
+    components: {
+        StudentTable,
+    },
     data() {
         return {
             queryInfo: new QueryInfo(1, "", 0, 0),
