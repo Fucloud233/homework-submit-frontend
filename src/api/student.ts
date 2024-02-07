@@ -8,6 +8,20 @@ export class Student {
     gender: number | undefined;
     grade: number | undefined;
     password: string | undefined;
+
+    constructor(
+        id?: number,
+        name?: string,
+        gender?: number,
+        grade?: number,
+        password?: string
+    ) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.grade = grade;
+        this.password = password;
+    }
 }
 
 export const add = async (info: Student, randomPassword: boolean) => {
